@@ -1,0 +1,15 @@
+'use strict'
+
+/**
+ * Module dependencies.
+ */
+var mongoose = require('mongoose')
+  , Schema = mongoose.Schema;
+
+/**
+ * <%= schemaNameFromId(id) %> Schema
+ */
+var <%= schemaNameFromId(id) %>Schema = new Schema({
+<% _.forEach( properties, function(value, key) { %>
+<% }) %>
+});
