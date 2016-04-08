@@ -13,3 +13,5 @@ var <%= schemaNameFromId(id) %>Schema = new Schema({
 <% _.forEach( properties, function(value, key) { %>
 <% }) %>
 });
+
+mongoose.model('<%= schemaNameFromId(id) %>', <%= schemaNameFromId(id) %>Schema);
