@@ -1,0 +1,30 @@
+{
+  "name": "mean-templates",
+  "version": "0.0.0",
+  "description": "Templates for MEAN packages.",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toyatech/mean-templates.git"
+  },
+  "keywords": [
+    "mean",
+    "builder",
+    "template",
+    "gulp"
+  ],
+  "author": "noisypebble <noisypebble@toyatech.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/toyatech/mean-templates/issues"
+  },
+  "homepage": "https://github.com/toyatech/mean-templates#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-tap": "^0.1.3",
+    "gulp-template": "^4.0.0"
+  }
+}
