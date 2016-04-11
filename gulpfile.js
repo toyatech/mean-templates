@@ -1,14 +1,13 @@
 const gulp = require('gulp');
 const tap = require('gulp-tap');
-const readFile = require('fs').readFileSync;
+const fs = require('fs');
 const _ = require('lodash');
 const gutil = require('gulp-util');
 
 function getTemplate(template, imports) {
-  return _.template(
-    String(readFile(__dirname + '/templates/' + template + '.jst')),
-    { 'imports': require(__dirname + '/templates/' + imports + '.js') }
-  );
+  var t = String(fs.readFileSync(__dirname + '/templates/' + template + '.jst'));
+  var i = require(__dirname + '/templates/' + imports + '.js');
+  return _.template(t, { 'imports': i });
 }
 
 function generate_server_models() {

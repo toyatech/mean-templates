@@ -10,8 +10,19 @@ var mongoose = require('mongoose')
  * <%= schemaNameFromId(id) %> Schema
  */
 var <%= schemaNameFromId(id) %>Schema = new Schema({
-<% _.forEach( properties, function(value, key) { %>
+<% _.forEach( _.initial(_.keys(properties)), function(key) { %>
+  <%= key %>: <%= pathFromProperty(properties[key], key, required) %>,
 <% }) %>
+  <%= _.last(_.keys(properties)) %>: <%= pathFromProperty(properties[_.last(_.keys(properties))], _.last(_.keys(properties)), required) %>
+
 });
+
+/**
+ * Validations
+ */<% _.forEach( required, function(key) { %>
+<%= schemaNameFromId(id) %>Schema.path('<%= key %>').validate(function(<%= key %>) {
+  return !!<%= key %>;
+}, '<%= _.capitalize(key) %> cannot be blank');
+<% }) %>
 
 mongoose.model('<%= schemaNameFromId(id) %>', <%= schemaNameFromId(id) %>Schema);
