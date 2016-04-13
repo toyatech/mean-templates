@@ -22,7 +22,7 @@ var <%= schemaNameFromId(id) %>Schema = new Schema({
  */<% _.forEach( required, function(key) { %>
 <%= schemaNameFromId(id) %>Schema.path('<%= key %>').validate(function(<%= key %>) {
   return !!<%= key %>;
-}, '<%= _.capitalize(key) %> cannot be blank');
+}, '<%= _.capitalize(_.startCase(key)) %> cannot be blank');
 <% }) %>
 
 mongoose.model('<%= schemaNameFromId(id) %>', <%= schemaNameFromId(id) %>Schema);
