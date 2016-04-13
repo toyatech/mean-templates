@@ -1,0 +1,39 @@
+'use strict'
+
+/**
+ * Module dependencies.
+ */
+var mongoose = require('mongoose')
+  , <%= schemaNameFromId(id) %> = mongoose.model('<%= schemaNameFromId(id) %>')
+  , config = require('meanio').loadConfig()
+  , _ = require('lodash');
+
+module.exports = function(<%= pluralize(schemaNameFromId(id)) %>) {
+
+  return {
+    /**
+     * Find <%= schemaNameFromId(id) %> by id
+     */
+    <%= schemaNameFromId(id) %>: function(req, res, next, id) {
+      
+
+/**
+ * <%= schemaNameFromId(id) %> Schema
+ */
+var <%= schemaNameFromId(id) %>Schema = new Schema({
+<% _.forEach( _.initial(_.keys(properties)), function(key) { %>
+  <%= key %>: <%= pathFromProperty(properties[key], key, required) %>,
+<% }) %>
+  <%= _.last(_.keys(properties)) %>: <%= pathFromProperty(properties[_.last(_.keys(properties))], _.last(_.keys(properties)), required) %>
+
+});
+
+/**
+ * Validations
+ */<% _.forEach( required, function(key) { %>
+<%= schemaNameFromId(id) %>Schema.path('<%= key %>').validate(function(<%= key %>) {
+  return !!<%= key %>;
+}, '<%= _.capitalize(_.startCase(key)) %> cannot be blank');
+<% }) %>
+
+mongoose.model('<%= schemaNameFromId(id) %>', <%= schemaNameFromId(id) %>Schema);
